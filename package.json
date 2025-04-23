@@ -1,0 +1,26 @@
+{
+  "name": "muhajirda-server-rest",
+  "version": "1.0.0",
+  "description": "",
+  "main": "server.js",
+  "scripts": {
+    "test": "node --env-file .env server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/naharuDev/muhajirda-server-rest.git"
+  },
+  "author": "naharuDev",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/naharuDev/muhajirda-server-rest/issues"
+  },
+  "homepage": "https://github.com/naharuDev/muhajirda-server-rest#readme",
+  "dependencies": {
+    "bcrypt": "^5.1.1",
+    "express": "^5.1.0",
+    "keygen": "^0.4.0",
+    "mariadb": "^3.4.1",
+    "pem": "^1.14.8"
+  }
+}
