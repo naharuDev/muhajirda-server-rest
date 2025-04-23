@@ -14,8 +14,8 @@ async function setup() {
 setup()
 
 const option = {
-    key: fs.readFileSync(process.env.KEY_PATH),
-    cert: fs.readFileSync(process.env.CERT_PATH),
+    key: fs.readFileSync('./cert/muhajirda_key.pem'),
+    cert: fs.readFileSync('./cert/muhajirda_cert.pem'),
 }
 
 const server = https.createServer(option, app)
