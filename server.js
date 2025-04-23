@@ -5,7 +5,7 @@ const app = require('./app')
 const { networkInterfaces } = require('os');
 const bcrypt = require('bcrypt')
 const admin = require('./api/routes/admin')
-const PORT = process.env.PORT || '2383';
+const PORT = process.env.PORT;
 
 async function setup() {
     const hash = await bcrypt.hash(process.env.ADMIN_KEY, 10);
