@@ -22,7 +22,7 @@ app.get('/', (req, res)=>{
 app.get('/db_test', async (req, res) => {
 
     try {
-        const rows = await pool.query("SELECT * FROM NamaHari");
+        const rows = await pool.query("SELECT * FROM namahari");
         if (rows){
             res.status(200).json({
                 message:"database working",
