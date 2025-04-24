@@ -89,7 +89,7 @@ router.post('/ttd/', async (req,res)=>{
                 }
                 else if (tipeAbsen.absensiEnum == 'siang'){
                     if (rows[0][0].absen_siang == null){
-                        const sqlQuerySiang ='INSERT INTO AbsensiSiang(id_karyawan, tanggal, waktu_ttd) VALUE (?, ?, ?)';
+                        const sqlQuerySiang ='INSERT INTO absensisiang(id_karyawan, tanggal, waktu_ttd) VALUE (?, ?, ?)';
                         const resultSiang = await pool.query(sqlQuerySiang, [id_karyawan, `${now.getFullYear()}-${now.getMonth()+1}-${now.getDate()}`, `${now.getHours()}:${now.getMinutes()}:${now.getSeconds()}`]);
                         res.status(201).json({
                             message: 'berhasil absen siang',
@@ -111,7 +111,7 @@ router.post('/ttd/', async (req,res)=>{
                 }
                 else{
                     if (rows[0][0].absen_pagi == null){
-                        const sqlQueryPagi ='INSERT INTO AbsensiPagi(id_karyawan, tanggal, waktu_ttd, keterlambatan) VALUE (?, ?, ?, ?)';
+                        const sqlQueryPagi ='INSERT INTO absensipagi(id_karyawan, tanggal, waktu_ttd, keterlambatan) VALUE (?, ?, ?, ?)';
                         const resultPagi = await pool.query(sqlQueryPagi, [id_karyawan, `${now.getFullYear()}-${now.getMonth()+1}-${now.getDate()}`, `${now.getHours()}:${now.getMinutes()}:${now.getSeconds()}`, tipeAbsen.keterlambatan ]);
                         res.status(201).json({
                             message: `berhasil absen pagi, keterlamatan : ${tipeAbsen.keterlambatan}`,

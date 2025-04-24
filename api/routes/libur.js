@@ -9,7 +9,7 @@ router.get('/list', async(req,res)=>{
         //const isValid = await authorization.auth_admin(admin_key)
         const isValid = true
         if (isValid){
-            const sqlQuery ='SELECT tanggal, keterangan FROM HariLibur';
+            const sqlQuery ='SELECT tanggal, keterangan FROM harilibur';
             const rows = await pool.query(sqlQuery);
             if (rows.length > 0){
                 res.status(200).json({

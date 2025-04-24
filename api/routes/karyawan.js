@@ -9,7 +9,7 @@ router.get('/list', async(req,res)=>{
         //const isValid = await authorization.auth_admin(admin_key)
         const isValid = true
         if (isValid){
-            const sqlQuery ='SELECT id, nama, telp, hashkey, createdAt, updatedAt FROM Karyawan';
+            const sqlQuery ='SELECT id, nama, telp, hashkey, createdAt, updatedAt FROM karyawan';
             const rows = await pool.query(sqlQuery);
             if (rows.length > 0){
                 res.status(200).json({
@@ -106,7 +106,7 @@ router.post('/bind/tambah', async(req, res)=>{
         const{id_karyawan, nama_karyawan, hari, nama_jadwal, kode_kegiatan, kelas, admin_key} = req.body;
         const isValid = await authorization.auth_admin(admin_key)
         if (isValid){
-            const sqlQuery = 'INSERT INTO JadwalKegiatanKaryawan(id_karyawan, kode_kegiatan, kelas, hari, nama_jadwal) VALUE (?,?,?,?,?)';
+            const sqlQuery = 'INSERT INTO jadwalkegiatankaryawan(id_karyawan, kode_kegiatan, kelas, hari, nama_jadwal) VALUE (?,?,?,?,?)';
             const result = await pool.query(sqlQuery, [id_karyawan, kode_kegiatan, kelas, hari, nama_jadwal]);
             if (result){
                 res.status(200).json({
@@ -141,7 +141,7 @@ router.post('/bind/hapus', async(req, res)=>{
         const{ hari, nama_jadwal, kode_kegiatan, kelas, admin_key} = req.body;
         const isValid = await authorization.auth_admin(admin_key)
         if (isValid){
-            const sqlQuery = 'DELETE FROM JadwalKegiatanKaryawan WHERE hari=? AND nama_jadwal=? AND kelas=?';
+            const sqlQuery = 'DELETE FROM jadwalkegiatankaryawan WHERE hari=? AND nama_jadwal=? AND kelas=?';
             const result = await pool.query(sqlQuery, [hari, nama_jadwal, kelas]);
             if (result){
                 res.status(200).json({

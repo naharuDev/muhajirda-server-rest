@@ -6,7 +6,7 @@ BigInt.prototype.toJSON = function () {
 
 async function check_hash(pool, id_karyawan, key){
     try {
-        const sqlGetUser = 'SELECT hashkey FROM Karyawan WHERE id=?';
+        const sqlGetUser = 'SELECT hashkey FROM karyawan WHERE id=?';
         const rows = await pool.query(sqlGetUser, id_karyawan);
         if(rows[0].hashkey != "-"){
             const isValid = await bcrypt.compare(key, rows[0].hashkey)

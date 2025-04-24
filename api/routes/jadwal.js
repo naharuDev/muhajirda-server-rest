@@ -6,7 +6,7 @@ const authorization = require('./authorization')
 
 router.get('/', async (req,res)=>{
     try{
-        const sqlQuery ='SELECT jd.hari as hari_kode, t2.nama as hari, jd.nama, jd.time_from as mulai, jd.time_to as hingga FROM Jadwal jd INNER JOIN NamaHari t2 ON t2.id=jd.hari ORDER BY jd.hari, jd.time_from';
+        const sqlQuery ='SELECT jd.hari as hari_kode, t2.nama as hari, jd.nama, jd.time_from as mulai, jd.time_to as hingga FROM jadwal jd INNER JOIN namahari t2 ON t2.id=jd.hari ORDER BY jd.hari, jd.time_from';
         const rows = await pool.query(sqlQuery);
         if (rows.length>0){
             res.status(200).json({

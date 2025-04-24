@@ -9,7 +9,7 @@ router.get('/list', async(req,res)=>{
         //const isValid = await authorization.auth_admin(admin_key)
         const isValid = true
         if (isValid){
-            const sqlQuery ='SELECT nama FROM Kelas';
+            const sqlQuery ='SELECT nama FROM kelas';
             const rows = await pool.query(sqlQuery);
             if (rows.length > 0){
                 res.status(200).json({
@@ -41,7 +41,7 @@ router.post('/tambah', async(req,res)=>{
         const{nama_kelas, admin_key} = req.body;
         const isValid = await authorization.auth_admin(admin_key)
         if (isValid){
-            const sqlQuery ='INSERT INTO Kelas (nama) VALUE (?)';
+            const sqlQuery ='INSERT INTO kelas (nama) VALUE (?)';
             const rows = await pool.query(sqlQuery,nama_kelas);
             if (rows){
                 res.status(200).json({
@@ -73,7 +73,7 @@ router.post('/hapus', async(req,res)=>{
         const{nama_kelas, admin_key} = req.body;
         const isValid = await authorization.auth_admin(admin_key)
         if (isValid){
-            const sqlQuery ='DELETE FROM Kelas WHERE nama=?';
+            const sqlQuery ='DELETE FROM kelas WHERE nama=?';
             const rows = await pool.query(sqlQuery, nama_kelas);
             if (rows.length > 0){
                 res.status(200).json({

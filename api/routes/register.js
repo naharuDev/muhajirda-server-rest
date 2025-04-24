@@ -10,7 +10,7 @@ router.post('/karyawan', async(req, res)=>{
         const{nama_karyawan, telp, admin_key} = req.body;
         const isValid = await authorization.auth_admin(admin_key)
         if (isValid){
-            const sqlQuery = 'INSERT INTO Karyawan (nama, telp) VALUE (?,?)';
+            const sqlQuery = 'INSERT INTO karyawan (nama, telp) VALUE (?,?)';
             const result = await pool.query(sqlQuery, [nama_karyawan, telp]);
             if (result){
                 res.status(200).json({
@@ -45,7 +45,7 @@ router.post('/karyawan/hapus', async(req,res)=>{
         const{id_karyawan, admin_key} = req.body;
         const isValid = await authorization.auth_admin(admin_key)
         if (isValid){
-            const sqlQuery = 'DELETE FROM Karyawan WHERE id=?';
+            const sqlQuery = 'DELETE FROM karyawan WHERE id=?';
             const result = await pool.query(sqlQuery, id_karyawan);
             if (result){
                 res.status(200).json({
@@ -79,7 +79,7 @@ router.post('/unlock_karyawan', async(req,res)=>{
         const{id_karyawan, admin_key} = req.body;
         const isValid = await authorization.auth_admin(admin_key)
         if (isValid){
-            const sqlQuery = 'UPDATE Karyawan SET hashkey = (?) WHERE id =(?)';
+            const sqlQuery = 'UPDATE karyawan SET hashkey = (?) WHERE id =(?)';
             const result = await pool.query(sqlQuery, ["-", id_karyawan]);
             res.status(200).json({
                 message:"success",
@@ -104,7 +104,7 @@ router.post('/unlock_karyawan', async(req,res)=>{
 router.post('/device_claim', async(req,res)=>{
     try{
         const{id_karyawan} = req.body;
-        const sqlQueryCheck ='SELECT id, nama, hashkey, createdAt, updatedAt FROM Karyawan WHERE id=?';
+        const sqlQueryCheck ='SELECT id, nama, hashkey, createdAt, updatedAt FROM karyawan WHERE id=?';
         const rows = await pool.query(sqlQueryCheck, id_karyawan);
         if (rows.length > 0 && rows[0].hashkey == "-"){
             const secretkey = await keygenerator.url(50);
