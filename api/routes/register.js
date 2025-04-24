@@ -109,7 +109,7 @@ router.post('/device_claim', async(req,res)=>{
         if (rows.length > 0 && rows[0].hashkey == "-"){
             const secretkey = await keygenerator.url(50);
             const hashkey = await bcrypt.hash(secretkey, 10)
-            const sqlQuery = 'UPDATE Karyawan SET hashkey =? WHERE id =?';
+            const sqlQuery = 'UPDATE karyawan SET hashkey =? WHERE id =?';
             const result = await pool.query(sqlQuery, [hashkey, id_karyawan]);
             res.status(200).json({
                 message:"success",
