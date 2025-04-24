@@ -81,7 +81,7 @@ router.post('/tambah', async(req,res)=>{
         const{hari, nama_kegiatan, jam_mulai, jam_selesai, admin_key} = req.body;
         const isValid = await authorization.auth_admin(admin_key)
         if (isValid){
-            const sqlQuery = 'INSERT INTO Jadwal (hari, nama, time_from, time_to) VALUE (?, ?, ?, ?)';
+            const sqlQuery = 'INSERT INTO jadwal (hari, nama, time_from, time_to) VALUE (?, ?, ?, ?)';
             const result = await pool.query(sqlQuery, [hari, nama_kegiatan, jam_mulai, jam_selesai ]);
             if(result){
                 res.status(200).json({
@@ -114,7 +114,7 @@ router.post('/hapus', async(req,res)=>{
         const{hari, nama_kegiatan, admin_key} = req.body;
         const isValid = await authorization.auth_admin(admin_key)
         if (isValid){
-            const sqlQuery = 'DELETE FROM Jadwal WHERE hari=? AND nama=?';
+            const sqlQuery = 'DELETE FROM jadwal WHERE hari=? AND nama=?';
             const result = await pool.query(sqlQuery, [hari, nama_kegiatan ]);
             if(result){
                 res.status(200).json({
@@ -148,7 +148,7 @@ router.post('/kegiatan/tambah',async(req,res)=>{
         const{kode, nama_kegiatan, keterangan, admin_key} = req.body;
         const isValid = await authorization.auth_admin(admin_key)
         if (isValid){
-            const sqlQuery = 'INSERT INTO Kegiatan (kode, nama, keterangan) VALUE (?, ?, ?)';
+            const sqlQuery = 'INSERT INTO kegiatan (kode, nama, keterangan) VALUE (?, ?, ?)';
             const result = await pool.query(sqlQuery, [kode, nama_kegiatan, keterangan ]);
             if (result){
                 res.status(200).json({
@@ -182,7 +182,7 @@ router.post('/kegiatan/hapus', async(req,res)=>{
         const{kode, admin_key} = req.body;
         const isValid = await authorization.auth_admin(admin_key)
         if (isValid){
-            const sqlQuery = 'DELETE FROM Kegiatan WHERE kode=?';
+            const sqlQuery = 'DELETE FROM kegiatan WHERE kode=?';
             const result = await pool.query(sqlQuery, kode);
             if(result){
                 res.status(200).json({
@@ -212,7 +212,7 @@ router.post('/kegiatan/hapus', async(req,res)=>{
 });
 router.get('/kegiatan/list', async(req,res)=>{
     try{
-        const sqlQuery ='SELECT kode, nama, keterangan FROM Kegiatan';
+        const sqlQuery ='SELECT kode, nama, keterangan FROM kegiatan';
         const rows = await pool.query(sqlQuery);
         if (rows){
             res.status(200).json({
